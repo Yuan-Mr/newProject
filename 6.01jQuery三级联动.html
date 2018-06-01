@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="jquery-3.3.1.js"></script>
+  <script src="sanji.js"></script>
+  <script>
+    $(function(){
+      //先遍历省级的select
+      $.each(CITYS,function(i,e){
+        // console.log(e.child);
+        $("#province").append("<option>"+CITYS[i].name+"</option>");
+
+      })
+      $("#province").change(function(){
+        var index = $("#province option:selected").index();
+        $("#city").empty();
+           val = CITYS[index].child;
+            $.each(val,function(i){
+              console.log(val[i]);
+               $("#city").append("<option>"+val[i].name+"</option>");
+            });
+        $("#city").triggerHandler("change")
+        })
+      $("#city").change(function(){
+          var inde = $("#city option:selected").index();
+          $("#district").empty();
+         var va = val[inde].child;
+         $.each(va,function(i){
+          $("#district").append("<option>"+va[i].value+"</option>");
+        })
+      })
+      $("#province").triggerHandler("change");
+      $("#city").triggerHandler("change")
+    })
+  </script>
+</head>
+<body>
+<select name="" id="province"></select>
+<select id="city"></select>
+<select name="" id="district"></select>
+</body>
+</html>
